@@ -26,3 +26,7 @@ Route::get('/users/new', function () {
 Route::get('/users/{id}', function ($id) {
     return "Mostrant l'usuari $id";
 });
+
+Route::get('/hi/{name}/{nickname}', function ($name, $nickname) {
+    return "Benvingut {$name}, el teu apodo és {$nickname}";
+});
