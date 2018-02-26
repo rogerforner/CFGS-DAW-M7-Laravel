@@ -27,6 +27,10 @@ Route::get('/users/{id}', function ($id) {
     return "Mostrant l'usuari $id";
 });
 
-Route::get('/hi/{name}/{nickname}', function ($name, $nickname) {
-    return "Benvingut {$name}, el teu apodo és {$nickname}";
+Route::get('/hi/{name}/{nickname?}', function ($name, $nickname = null) {
+    if ($nickname) {
+        return "Benvingut {$name}, el teu apodo és {$nickname}";
+    } else {
+        return "Benvingut {$name}, no tens apodo";
+    }
 });
