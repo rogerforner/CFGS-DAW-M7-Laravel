@@ -19,10 +19,10 @@ Route::get('/users', function () {
     return 'Users';
 });
 
-Route::get('/users/{id}', function ($id) {
-    return "Mostrant l'usuari $id";
-})->where('id', '\d+');
-
 Route::get('/users/new', function () {
     return 'Crear un nou usuari';
+});
+
+Route::get('/users/{id}', function ($id) {
+    return "Mostrant l'usuari $id";
 });
