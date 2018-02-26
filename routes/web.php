@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/users', function () {
     return 'Users';
 });
+
+Route::get('/users/{id}', function ($id) {
+    return "Mostrant l'usuari $id";
+});
