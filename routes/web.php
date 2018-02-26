@@ -22,3 +22,7 @@ Route::get('/users', function () {
 Route::get('/users/{id}', function ($id) {
     return "Mostrant l'usuari $id";
 });
+
+Route::get('/users/new', function ($id) {
+    return 'Crear un nou usuari';
+});
