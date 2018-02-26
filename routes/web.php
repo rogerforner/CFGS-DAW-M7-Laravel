@@ -21,7 +21,7 @@ Route::get('/users', function () {
 
 Route::get('/users/{id}', function ($id) {
     return "Mostrant l'usuari $id";
-})->where('id', '[0-9]+');
+})->where('id', '\d+');
 
 Route::get('/users/new', function () {
     return 'Crear un nou usuari';
