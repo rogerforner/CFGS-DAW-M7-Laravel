@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProfessionSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,10 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
-        // Seeders.
-        DB::table('professions')->insert([
-            'title' => 'Pagès'
+        DB::table('users')->insert([
+            'name'     => 'Pepe M.',
+            'email'    => 'pepe@example.com',
+            'password' => bcrypt('laravel')
         ]);
     }
 }
