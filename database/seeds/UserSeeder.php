@@ -1,4 +1,5 @@
 <?php
+use App\Profession;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -12,9 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $professionID = DB::table('professions')
-            ->where('title', 'Pagès')
-            ->value('id');
+        $professionID = Profession::where('title', 'Pagès')->value('id');
 
         User::create([
             'name'          => 'Pepe M.',
