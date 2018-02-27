@@ -16,9 +16,16 @@ class UserSeeder extends Seeder
         $professionID = Profession::where('title', 'Pagès')->value('id');
 
         User::create([
-            'name'          => 'Pepe M.',
-            'email'         => 'pepe@example.com',
-            'password'      => bcrypt('laravel'),
+            'name'          => 'Administrador',
+            'email'         => 'admin@example.com',
+            'password'      => bcrypt('admin'),
+            'profession_id' => $professionID,
+        ]);
+
+        User::create([
+            'name'          => 'Treballador',
+            'email'         => 'worker@example.com',
+            'password'      => bcrypt('worker'),
             'profession_id' => $professionID,
         ]);
     }

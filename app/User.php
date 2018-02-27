@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Rols usuaris (bàsic).
+     *
+     * Definim unes funcions amb les que definir, de forma extremadament bàsica
+     * els rols dels usuaris -> UserSeeder.
+     */
+    public function isAdmin()
+    {
+        return $this->email === 'admin@example.com';
+    }
+
+    public function isWorker()
+    {
+        return $this->email === 'worker@example.com';
+    }
 }
