@@ -14,4 +14,14 @@ class Profession extends Model
     protected $fillable = [
         'title',
     ];
+
+    /**
+     * Relacions
+     *
+     * Una professió té molts d'usuaris.
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

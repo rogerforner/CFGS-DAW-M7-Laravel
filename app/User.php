@@ -51,4 +51,17 @@ class User extends Authenticatable
     {
         return $this->email === 'worker@example.com';
     }
+
+    /**
+     * Relacions
+     *
+     * Un usuari pertany a una professió.
+     * Per defecte es busca "profession_id" tot i que si no estat nombrat, el
+     * camp, així, es pot passar com a segon argument:
+     * belongsTo(Profession::class, 'id_profession').
+     */
+    public function profession()
+    {
+        return $this->belongsTo(Profession::class);
+    }
 }
