@@ -18,8 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('profession_id')->unsigned();
-            $table->foreign('profession_id')->references('id')->on('professions');
             $table->rememberToken();
             $table->timestamps();
         });
