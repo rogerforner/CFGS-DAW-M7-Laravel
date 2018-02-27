@@ -44,7 +44,7 @@ class User extends Authenticatable
      */
     public function isAdmin()
     {
-        return $this->email === 'admin@example.com';
+        return $this->is_admin;
     }
 
     public function isWorker()

@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'email'         => 'admin@example.com',
             'password'      => bcrypt('admin'),
             'profession_id' => $professionID,
+            'is_admin'      => true
         ]);
 
         User::create([
@@ -27,6 +28,13 @@ class UserSeeder extends Seeder
             'email'         => 'worker@example.com',
             'password'      => bcrypt('worker'),
             'profession_id' => $professionID,
+        ]);
+
+        User::create([
+            'name'          => 'Client',
+            'email'         => 'client@example.com',
+            'password'      => bcrypt('client'),
+            'profession_id' => null,
         ]);
     }
 }
