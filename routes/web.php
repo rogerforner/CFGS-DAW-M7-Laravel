@@ -15,22 +15,21 @@ Route::get('/', function () {
     return 'Home';
 });
 
-Route::get('/users', function () {
-    return 'Users';
-});
-
-Route::get('/users/new', function () {
-    return 'Crear un nou usuari';
-});
-
-Route::get('/users/{id}', function ($id) {
-    return "Mostrant l'usuari $id";
-});
-
-Route::get('/hi/{name}/{nickname?}', function ($name, $nickname = null) {
-    if ($nickname) {
-        return "Benvingut {$name}, el teu apodo és {$nickname}";
-    } else {
-        return "Benvingut {$name}, no tens apodo";
-    }
-});
+/**
+ * Route::resource
+ *
+ * Mitjançant aquest tipus de "ruta" fem servir l'arquitectura REST i ens
+ * estalviem crear una ruta per a cada acció, és el mètode el que determina
+ * quina acció dur a terme.
+ *
+ * GET /users            -> index()
+ * GET /users/create     -> create()
+ * POST /users           -> store(Request $request)
+ * GET /users/:id        -> show($id)
+ * GET /users/:id/edit   -> edit($id)
+ * PUT/PATCH /users/:id  -> update(Request $request, $id)
+ * DELETE /users/:id     -> destroy($id)
+ *
+ * $ php artisan route:list
+ */
+Route::resource('users', 'UserController');
