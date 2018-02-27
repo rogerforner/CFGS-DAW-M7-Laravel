@@ -30,11 +30,13 @@ class UserSeeder extends Seeder
             'profession_id' => $professionID,
         ]);
 
-        User::create([
-            'name'          => 'Client',
-            'email'         => 'client@example.com',
-            'password'      => bcrypt('client'),
-            'profession_id' => null,
+        // Creem un usuari aleatori però amb un professió específica.
+        factory(USER::class)->create([
+            'profession_id' => $professionID,
         ]);
+
+        // Usuari aleatori sense professió.
+        // En creem 10.
+        factory(USER::class, 10)->create();
     }
 }
