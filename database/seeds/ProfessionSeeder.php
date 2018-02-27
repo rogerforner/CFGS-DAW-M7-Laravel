@@ -12,6 +12,8 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('professions')->truncate(); // Buidar taula abans de crear seeders.
+
         DB::table('professions')->insert([
             'title' => 'Pagès'
         ]);
