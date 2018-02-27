@@ -12,13 +12,6 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
-        // Quan emprem Claus foranes ens dona un error. Desactivem la revisió
-        // d'aquestes en la DB.
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-
-        // Buidar taula abans de crear seeders.
-        DB::table('professions')->truncate();
-
         // Seeders.
         DB::table('professions')->insert([
             'title' => 'Pagès'
