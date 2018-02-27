@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             ->where('title', 'Pagès')
             ->value('id');
 
-        DB::table('users')->insert([
+        User::create([
             'name'          => 'Pepe M.',
             'email'         => 'pepe@example.com',
             'password'      => bcrypt('laravel'),
