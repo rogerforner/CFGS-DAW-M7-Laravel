@@ -12,17 +12,8 @@ class ProfessionSeeder extends Seeder
      */
     public function run()
     {
-        // Seeders.
-        Profession::create([
-            'title' => 'Pagès'
-        ]);
-
-        Profession::create([
-            'title' => 'Apicultor'
-        ]);
-
-        Profession::create([
-            'title' => 'Esportista'
-        ]);
+        // Professions aleatòries.
+        // En creem 10.
+        factory(Profession::class, 10)->create();
     }
 }
