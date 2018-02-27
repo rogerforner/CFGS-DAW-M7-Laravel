@@ -16,5 +16,13 @@ class ProfessionSeeder extends Seeder
         DB::table('professions')->insert([
             'title' => 'Pagès'
         ]);
+
+        DB::table('professions')->insert([
+            'title' => 'Apicultor'
+        ]);
+
+        DB::table('professions')->insert([
+            'title' => 'Esportista'
+        ]);
     }
 }
