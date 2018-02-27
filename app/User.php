@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function isWorker()
     {
-        return $this->email === 'worker@example.com';
+        return $this->is_worker;
     }
 
     /**

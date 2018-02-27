@@ -15,19 +15,17 @@ class UserSeeder extends Seeder
     {
         $professionID = Profession::where('title', 'Pagès')->value('id');
 
-        User::create([
+        factory(USER::class)->create([
             'name'          => 'Administrador',
             'email'         => 'admin@example.com',
             'password'      => bcrypt('admin'),
-            'profession_id' => $professionID,
-            'is_admin'      => true
+            'is_admin'      => true,
         ]);
 
-        User::create([
+        factory(USER::class)->create([
             'name'          => 'Treballador',
             'email'         => 'worker@example.com',
-            'password'      => bcrypt('worker'),
-            'profession_id' => $professionID,
+            'is_worker'     => true,
         ]);
 
         // Creem un usuari aleatori però amb un professió específica.
