@@ -28,6 +28,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Fer que laravel converteixi valors als que deistgem.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_admin' => 'boolean'
+    ];
+
+    /**
      * Rols usuaris (bàsic).
      *
      * Definim unes funcions amb les que definir, de forma extremadament bàsica
