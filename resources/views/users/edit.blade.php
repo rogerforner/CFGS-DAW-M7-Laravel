@@ -33,7 +33,8 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <form action="{{ action('UserController@index') }}" method="POST">
+            <form action="{{ action('UserController@show', ['id' => $user->id]) }}" method="POST">
+              @method('put')
               @csrf
 
               <div class="form-group">

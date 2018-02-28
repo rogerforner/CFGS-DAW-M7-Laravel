@@ -14,6 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        // Obtenir un array amb tots els usuaris.
         $users = User::all();
 
         return view('users.index', ['users' => $users]);
@@ -39,17 +40,13 @@ class UserController extends Controller
     {
         // Obtenir les dades del formulari.
         // I validar els camps.
-        $data = request()->validate(
-            [
-            'name'     => 'required',
-            'email'    => ['required', 'email', 'unique:users,email'], // unique:taula,columna
-            'password' => 'required'
-          ],
-            [
-            'name.required' => 'El camp és obligatori.'
-          ]
-        );
+        $data = request()->validate([
+          'name'     => 'required',
+          'email'    => ['required', 'email', 'unique:users,email'], // unique:taula,columna
+          'password' => 'required'
+        ]);
 
+        // Crear usuari amb les dades entrades.
         User::create([
           'name'     => $data['name'],
           'email'    => $data['email'],
@@ -67,29 +64,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        // Buscar usuari per la seva ID.
         $user = User::findOrFail($id);
-
-        if ($user == null) {
-            return response()->view('errors.404', [], 404);
-        }
 
         return view('users.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
+     * Podem passar objecte User ELOQUENT i sap trobar ID ell sol.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-
-        if ($user == null) {
-            return response()->view('errors.404', [], 404);
-        }
-
+        // Retornar vista ID usuari en concret.
         return view('users.edit', ['user' => $user]);
     }
 
@@ -102,7 +92,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtenir les dades de l'usuari.
+        $user = User::findOrFail($id);
+
+        // Validar formulari.
+        $data = request()->validate([
+          'name'     => 'required',
+          'email'    => ['required', 'email'],
+          'password' => 'required'
+        ]);
+
+        // Encriptar password pq sinó ens dóna un error.
+        $data['password'] = bcrypt($data['password']);
+
+        // Actualitzar dades.
+        $user->update($data);
+
+        return redirect()->action('UserController@show', ['id' => $id]);
     }
 
     /**
