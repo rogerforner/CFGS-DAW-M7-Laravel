@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -98,12 +99,22 @@ class UserController extends Controller
         // Validar formulari.
         $data = request()->validate([
           'name'     => 'required',
-          'email'    => ['required', 'email'],
-          'password' => 'required'
+          'email'    => [
+            'required',
+            'email',
+            Rule::unique('users')->ignore($id) // Ignorem email del propi usuari.
+          ],
+          'password' => ''
         ]);
 
-        // Encriptar password pq sinó ens dóna un error.
-        $data['password'] = bcrypt($data['password']);
+        // El password serà opcional.
+        if ($data['password'] != null) {
+            // Encriptar password pq sinó ens dóna un error.
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            // Treiem del array $data el password.
+            unset($data['password']);
+        }
 
         // Actualitzar dades.
         $user->update($data);

@@ -49,7 +49,7 @@
 
               <div class="form-group">
                 <label for="userPassword">Password</label>
-                <input type="password" name="password" class="form-control" id="userPassword" placeholder="***" required>
+                <input type="password" name="password" class="form-control" id="userPassword" placeholder="***">
               </div>
 
               <button type="submit" class="btn btn-primary">Editar</button>
