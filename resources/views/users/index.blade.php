@@ -34,7 +34,7 @@
                   <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Accions">
                       <a href="{{ action('UserController@show', ['id' => $user->id]) }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Visualitzar</a>
-                      <a href="#" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Editar</a>
+                      <a href="{{ action('UserController@edit', ['id' => $user->id]) }}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Editar</a>
                       <a href="#" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Eliminar</a>
                     </div>
                   </td>

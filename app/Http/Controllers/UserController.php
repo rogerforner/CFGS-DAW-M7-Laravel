@@ -84,7 +84,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user == null) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
