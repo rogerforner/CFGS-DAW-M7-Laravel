@@ -41,7 +41,9 @@ class UserController extends Controller
         // I validar els camps.
         $data = request()->validate(
             [
-            'name' => 'required'
+            'name'     => 'required',
+            'email'    => ['required', 'email', 'unique:users,email'], // unique:taula,columna
+            'password' => 'required'
           ],
             [
             'name.required' => 'El camp és obligatori.'
