@@ -17,7 +17,12 @@
           <div class="card-body">
             <h5 class="card-title">{{ $user->name }}</h5>
             <p class="card-text">{{ $user->email }}</p>
-            <a href="#" class="btn btn-danger"><i class="fas fa-user-times"></i> Baixa</a>
+            {{-- Eliminar --}}
+            <form class="my-0 mx-0" action="{{ route('users.destroy', $user) }}" method="POST">
+              @csrf
+              @method('delete')
+              <button type="submit" class="btn btn-danger btn-sm">Eliminar compte</button>
+            </form>
           </div>
           <div class="card-footer text-muted">
             Última actualització<br>

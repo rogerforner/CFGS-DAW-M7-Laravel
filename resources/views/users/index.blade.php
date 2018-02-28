@@ -33,15 +33,22 @@
                   <td class="align-middle">{{ $user->email }}</td>
                   <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Accions">
-                      <a href="{{ action('UserController@show', ['id' => $user->id]) }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Visualitzar</a>
-                      <a href="{{ action('UserController@edit', ['id' => $user->id]) }}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Editar</a>
-                      <a href="#" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Eliminar</a>
-                    </div>
+                      {{-- Veure --}}
+                      <a class="btn btn-dark btn-sm" href="{{ route('users.show', $user) }}" role="button">Veure</a>
+                      {{-- Editar --}}
+                      <a class="btn btn-warning btn-sm" href="{{ route('users.edit', $user) }}" role="button">Editar</a>
+                      {{-- Eliminar --}}
+                      <form class="my-0 mx-0" action="{{ route('users.destroy', $user) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                      </form>
+                    </div><!-- /.btn-group -->
                   </td>
                 </tr>
               @empty
                 <tr>
-                  <td colspan="5">No hi ha productes a la base de dades.</td>
+                  <td colspan="4">No hi ha usuaris a la base de dades.</td>
                 </tr>
               @endforelse
             </tbody>

@@ -63,11 +63,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        // Buscar usuari per la seva ID.
-        $user = User::findOrFail($id);
-
         return view('users.show', ['user' => $user]);
     }
 
@@ -91,18 +88,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(User $user)
     {
-        // Obtenir les dades de l'usuari.
-        $user = User::findOrFail($id);
-
         // Validar formulari.
         $data = request()->validate([
           'name'     => 'required',
           'email'    => [
             'required',
             'email',
-            Rule::unique('users')->ignore($id) // Ignorem email del propi usuari.
+            Rule::unique('users')->ignore($user->id) // Ignorem email del propi usuari.
           ],
           'password' => ''
         ]);
@@ -119,7 +113,7 @@ class UserController extends Controller
         // Actualitzar dades.
         $user->update($data);
 
-        return redirect()->action('UserController@show', ['id' => $id]);
+        return redirect()->route('users.show', ['user' => $user]);
     }
 
     /**
@@ -128,8 +122,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }
