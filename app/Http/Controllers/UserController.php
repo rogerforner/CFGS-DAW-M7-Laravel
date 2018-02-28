@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view("users.index", ["users" => $users]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -48,9 +48,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        return view("users.show", ["user" => $user]);
+        if ($user == null) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        return view('users.show', ['user' => $user]);
     }
 
     /**
