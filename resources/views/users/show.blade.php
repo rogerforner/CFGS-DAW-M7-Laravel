@@ -17,6 +17,9 @@
           <div class="card-body">
             <h5 class="card-title">{{ $user->name }}</h5>
             <p class="card-text">{{ $user->email }}</p>
+            @if ( $user->isAdmin() )
+              <p>Yay! I'm Admin! :P</p>
+            @endif
             {{-- Eliminar --}}
             <form class="my-0 mx-0" action="{{ route('users.destroy', $user) }}" method="POST">
               @csrf
