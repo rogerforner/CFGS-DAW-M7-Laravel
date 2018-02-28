@@ -37,7 +37,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->all();
+        // Obtenir les dades del formulari.
+        // I validar els camps.
+        $data = request()->validate(
+            [
+            'name' => 'required'
+          ],
+            [
+            'name.required' => 'El camp és obligatori.'
+          ]
+        );
 
         User::create([
           'name'     => $data['name'],
