@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->all();
+
+        User::create([
+          'name'     => $data['name'],
+          'email'    => $data['email'],
+          'password' => bcrypt($data['password'])
+        ]);
+
+        return redirect()->route('users.index');
     }
 
     /**

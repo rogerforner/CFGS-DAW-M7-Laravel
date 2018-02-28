@@ -22,7 +22,6 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Correu electrònic</th>
-                <th scope="col">Professió</th>
                 <th scope="col">Accions</th>
               </tr>
             </thead>
@@ -32,7 +31,6 @@
                   <td class="align-middle">{{ $user->id }}</td>
                   <td class="align-middle">{{ $user->name }}</td>
                   <td class="align-middle">{{ $user->email }}</td>
-                  <td class="align-middle">{{ $user->profession }}</td>
                   <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Accions">
                       <a href="{{ action('UserController@show', ['id' => $user->id]) }}" class="btn btn-dark btn-sm" role="button" aria-pressed="true">Visualitzar</a>

@@ -33,7 +33,8 @@
                           Usuaris
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ url('users') }}">Llistat</a>
+                          <a class="dropdown-item" href="{{ action('UserController@index') }}">llistar</a>
+                          <a class="dropdown-item" href="{{ action('UserController@create') }}">Crear</a>
                         </div>
                       </li>
                     </ul>
