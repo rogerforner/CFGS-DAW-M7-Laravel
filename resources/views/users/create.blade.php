@@ -30,7 +30,7 @@
               @csrf
 
               <div class="form-group">
-                <label for="userName">Nom</label>
+                <label for="userName">Nom <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="userName">
                 @if ($errors->has('name'))
                   <p class="text-danger"><small>El camp no pot estar buit.</small></p>
@@ -38,12 +38,12 @@
               </div>
 
               <div class="form-group">
-                <label for="userEmail">Correu electrònic</label>
+                <label for="userEmail">Correu electrònic <span class="text-danger"><strong>*</strong></span></label>
                 <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="userEmail" placeholder="@" required>
               </div>
 
               <div class="form-group">
-                <label for="userPassword">Password</label>
+                <label for="userPassword">Password <span class="text-danger"><strong>*</strong></span></label>
                 <input type="password" name="password" class="form-control" id="userPassword" placeholder="***" required>
               </div>
 

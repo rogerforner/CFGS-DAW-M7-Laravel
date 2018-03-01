@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -23,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -34,7 +38,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // No fem validació perquè PETA!
+
+        // $data = request()->validate([
+        //   'name'     => 'required',
+        //   'price'    => 'required'
+        // ]);
+
+        Product::create([
+          'name'        => $request['name'],
+          'description' => $request['description'],
+          'price'       => $request['price']
+        ]);
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -43,9 +60,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', ['product' => $product]);
     }
 
     /**
@@ -54,9 +71,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
@@ -66,9 +83,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Product $product)
     {
-        //
+        $data = request()->validate([
+          'name'     => 'required',
+          'price'    => 'required'
+        ]);
+
+        $product->update($data);
+
+        return redirect()->route('products.show', ['product' => $product]);
     }
 
     /**
@@ -77,8 +101,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }

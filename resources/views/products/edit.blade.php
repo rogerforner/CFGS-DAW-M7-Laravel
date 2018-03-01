@@ -1,31 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Editar usuari')
+@section('title', 'Editar producte')
 
 @section('content')
   <div class="container my-5">
     <div class="row">
       <div class="col">
-        <h1 class="display-4">Editar usuari</h1>
-        <h2 class="text-muted">{{ $user->name }}</h2>
-
-        {{-- Mostrar errors --}}
-        @if ($errors->any())
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Compte!</strong> Hi ha errors.
-
-            <ul>
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        @endif
-
+        <h1 class="display-4">Editar producte</h1>
+        <h2 class="text-muted">{{ $product->name }}</h2>
       </div><!-- /.row -->
     </div><!-- /.row -->
 
@@ -33,23 +15,23 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <form action="{{ action('UserController@show', ['id' => $user->id]) }}" method="POST">
+            <form action="{{ action('ProductController@show', ['id' => $product->id]) }}" method="POST">
               @method('put')
               @csrf
 
               <div class="form-group">
-                <label for="userName">Nom</label>
-                <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control" id="userName">
+                <label for="productName">Nom <span class="text-danger"><strong>*</strong></span></label>
+                <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control" id="productName" required>
               </div>
 
               <div class="form-group">
-                <label for="userEmail">Correu electrònic</label>
-                <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control" id="userEmail" placeholder="@" required>
+                <label for="productPrice">Preu <span class="text-danger"><strong>*</strong></span></label>
+                <input type="number" name="price" step=".01" value="{{ old('price', $product->price) }}" class="form-control" id="productPrice" placeholder="€" required>
               </div>
 
               <div class="form-group">
-                <label for="userPassword">Password</label>
-                <input type="password" name="password" class="form-control" id="userPassword" placeholder="***">
+                <label for="productDescription">Descripció</label>
+                <input type="text" name="description" value="{{ old('description', $product->description) }}" class="form-control" id="productDescription">
               </div>
 
               <button type="submit" class="btn btn-primary">Editar</button>
@@ -61,7 +43,7 @@
 
     <div class="row mt-5">
       <div class="col">
-        <a href="{{ action('UserController@index') }}"><i class="far fa-arrow-alt-circle-left"></i> Tornar</a>
+        <a href="{{ action('ProductController@index') }}"><i class="far fa-arrow-alt-circle-left"></i> Tornar</a>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container -->

@@ -37,6 +37,16 @@
                           <a class="dropdown-item" href="{{ action('UserController@create') }}">Crear</a>
                         </div>
                       </li>
+                      <!-- Productes -->
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Productes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{ action('ProductController@index') }}">llistar</a>
+                          <a class="dropdown-item" href="{{ action('ProductController@create') }}">Crear</a>
+                        </div>
+                      </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

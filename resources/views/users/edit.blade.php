@@ -38,12 +38,12 @@
               @csrf
 
               <div class="form-group">
-                <label for="userName">Nom</label>
+                <label for="userName">Nom <span class="text-danger"><strong>*</strong></span></label>
                 <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control" id="userName">
               </div>
 
               <div class="form-group">
-                <label for="userEmail">Correu electrònic</label>
+                <label for="userEmail">Correu electrònic <span class="text-danger"><strong>*</strong></span></label>
                 <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control" id="userEmail" placeholder="@" required>
               </div>
 
