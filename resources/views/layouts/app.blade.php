@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 <body>
     <div id="app">
@@ -51,7 +52,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- JSON Feed RSS -->
-                        <li><a class="nav-link" href="{{ url('products-feed') }}">Feed</a></li>
+                        <li><a class="nav-link" href="{{ url('products-feed') }}"><i class="fas fa-rss-square"></i></a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
