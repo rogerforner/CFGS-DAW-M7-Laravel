@@ -41,3 +41,9 @@ Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback
 Route::resource('users', 'UserController');
 
 Route::resource('products', 'ProductController');
+
+Route::resource(
+    'products-feed',
+    'ProductJsonFeedController',
+    ['only' => ['index']]
+);

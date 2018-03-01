@@ -50,6 +50,8 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <!-- JSON Feed RSS -->
+                        <li><a class="nav-link" href="{{ url('products-feed') }}">Feed</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
