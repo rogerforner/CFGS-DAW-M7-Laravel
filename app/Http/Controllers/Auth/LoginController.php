@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,46 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $github_user = Socialite::driver('github')->user();
+
+        $user = $this->userFindOrCreate($github_user);
+
+        Auth::login($user, true);
+
+        return redirect($this->redirectTo);
+    }
+
+    public function userFindOrCreate($github_user)
+    {
+        $user = User::where('provider_id', $github_user->id)->first();
+
+        if (!$user) {
+            $user              = new User;
+            $user->name        = $github_user->getName();
+            $user->email       = $github_user->getEmail();
+            $user->provider_id = $github_user->getId();
+            $user->save();
+        }
+
+        return $user;
     }
 }

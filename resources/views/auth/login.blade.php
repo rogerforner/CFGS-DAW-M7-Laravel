@@ -55,6 +55,8 @@
                                     Login
                                 </button>
 
+                                <a class="btn btn-dark" href="{{ url('login/github') }}" role="button">GitHub</a>
+
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
