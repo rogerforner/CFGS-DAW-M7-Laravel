@@ -9,7 +9,6 @@ $ git clone https://github.com/rogerforner/tinkeringLaravel.git
 
 ```
 $ composer install
-$ npm install
 ```
 
 ## Configuració
