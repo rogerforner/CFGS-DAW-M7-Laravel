@@ -1,5 +1,5 @@
 <?php
-
+use App\Product;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -11,6 +11,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Creem 10 productes.
+        factory(PRODUCT::class, 10)->create();
     }
 }

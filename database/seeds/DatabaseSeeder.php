@@ -14,12 +14,14 @@ class DatabaseSeeder extends Seeder
         // Esborrar taules.
         $this->truncateTables([
             'professions',
-            'users'
+            'users',
+            'products'
         ]);
 
         // Registrar Seeders per a executar-los.
         $this->call(ProfessionSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 
     /*
