@@ -25,11 +25,9 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  @if ($user->isAdmin() || $user->isWorker())
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       <!-- Usuaris -->
-                      @if ($user->isAdmin())
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Usuaris
@@ -39,7 +37,6 @@
                             <a class="dropdown-item" href="{{ action('UserController@create') }}">Crear</a>
                           </div>
                         </li>
-                      @endif
                       <!-- Productes -->
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +48,6 @@
                         </div>
                       </li>
                     </ul>
-                  @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
