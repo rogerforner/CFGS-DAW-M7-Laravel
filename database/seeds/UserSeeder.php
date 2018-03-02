@@ -1,5 +1,4 @@
 <?php
-use App\Profession;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,8 +12,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $professionID = Profession::where('title', 'Pagès')->value('id');
-
         factory(USER::class)->create([
             'name'          => 'Administrador',
             'email'         => 'admin@example.com',
