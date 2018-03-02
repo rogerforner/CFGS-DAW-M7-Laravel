@@ -18,8 +18,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Registrar Seeders per a executar-los.
-        $this->call(UserSeeder::class);
-        $this->call(ProductSeeder::class);
+        // Parar compte amb l'ordre perquè hi ha taules que depenen d'altres.
+        $this->call(PermissionSeeder::class);
+        $this->call(RoleSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(ProductSeeder::class);
     }
 
     /*

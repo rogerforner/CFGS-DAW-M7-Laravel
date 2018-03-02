@@ -15,6 +15,11 @@
         <div class="card">
           <div class="card-body">
             <h1>Hola</h1>
+            @role('client')
+                I am a client!
+            @else
+                I am not a client...
+            @endrole
           </div>
         </div><!-- /.card -->
       </div><!-- /.col -->

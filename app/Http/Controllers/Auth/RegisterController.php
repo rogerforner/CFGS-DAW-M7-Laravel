@@ -63,6 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Crear l'usuari.
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
@@ -70,6 +71,18 @@ class RegisterController extends Controller
             'token'    => str_random(25),
         ]);
 
+        // Contem els usuaris de la base de dades. Si només hi ha un usuari, és
+        // a dir, és el primer usuari que es registra, li assignem el rol "admin".
+        // Si hi ha més d'un usuari, assignarem el rol "client".
+        $userCount = User::count();
+
+        if ($userCount == 1) {
+            $user->assignRole('admin');
+        } else {
+            $user->assignRole('client');
+        }
+
+        // Enviar correu de verificació.
         $user->sendVerificationEmail();
 
         return $user;

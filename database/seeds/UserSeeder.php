@@ -12,20 +12,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(USER::class)->create([
-            'name'          => 'Administrador',
-            'email'         => 'admin@example.com',
-            'password'      => bcrypt('admin'),
-        ]);
-
-        factory(USER::class)->create([
-            'name'          => 'Treballador',
-            'email'         => 'worker@example.com',
-            'password'      => bcrypt('worker'),
-        ]);
-
-        // Usuari aleatori sense professió.
-        // En creem 10.
-        factory(USER::class, 10)->create();
+        factory(USER::class, 15)->create()->each(function ($user) {
+            if ($user->id == 1) {
+                $user->assignRole('admin');
+            } elseif ($user->id == 2) {
+                $user->assignRole('worker');
+            } else {
+                $user->assignRole('client');
+            }
+        });
     }
 }
