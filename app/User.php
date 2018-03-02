@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_admin', 'is_worker'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -33,36 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'is_admin'  => 'boolean',
-        'is_worker' => 'boolean'
+        // 'is_admin'  => 'boolean',
+        // 'is_worker' => 'boolean'
     ];
-
-    /**
-     * Rols usuaris (bàsic).
-     *
-     * Definim unes funcions amb les que definir, de forma extremadament bàsica
-     * els rols dels usuaris -> UserSeeder.
-     */
-    public function isAdmin()
-    {
-        return $this->is_admin;
-    }
-
-    public function isWorker()
-    {
-        return $this->is_worker;
-    }
-
-    /**
-     * Relacions
-     *
-     * Un usuari pertany a una professió.
-     * Per defecte es busca "profession_id" tot i que si no estat nombrat, el
-     * camp, així, es pot passar com a segon argument:
-     * belongsTo(Profession::class, 'id_profession').
-     */
-    public function profession()
-    {
-        return $this->belongsTo(Profession::class);
-    }
 }

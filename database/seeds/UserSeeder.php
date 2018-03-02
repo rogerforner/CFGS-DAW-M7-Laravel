@@ -19,18 +19,12 @@ class UserSeeder extends Seeder
             'name'          => 'Administrador',
             'email'         => 'admin@example.com',
             'password'      => bcrypt('admin'),
-            'is_admin'      => true,
         ]);
 
         factory(USER::class)->create([
             'name'          => 'Treballador',
             'email'         => 'worker@example.com',
-            'is_worker'     => true,
-        ]);
-
-        // Creem un usuari aleatori però amb un professió específica.
-        factory(USER::class)->create([
-            'profession_id' => $professionID,
+            'password'      => bcrypt('worker'),
         ]);
 
         // Usuari aleatori sense professió.
