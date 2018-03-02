@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in!<br>
+                    Correu electrònic {{ auth()->user()->verified() ? 'verificat' : 'no verificat' }}
                 </div>
             </div>
         </div>
