@@ -39,6 +39,7 @@
                 <th scope="col">Correu electrònic</th>
                 <th scope="col">Creat</th>
                 <th scope="col">Modificat</th>
+                <th scope="col">Rol</th>
                 <th scope="col">Accions</th>
               </tr>
             </thead>
@@ -50,6 +51,7 @@
                   <td class="align-middle">{{ $user->email }}</td>
                   <td class="align-middle">{{ $user->created_at }}</td>
                   <td class="align-middle">{{ $user->updated_at }}</td>
+                  <td class="align-middle">{{ $user->getRoleNames() }}</td>
                   <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Accions">
                       {{-- Veure --}}

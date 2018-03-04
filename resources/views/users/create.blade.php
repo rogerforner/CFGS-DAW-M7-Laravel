@@ -50,7 +50,7 @@
               <div class="form-group">
                 <label for="userRole">Rol</label>
                 <select name="role" class="form-control" id="userRole">
-                  <option>----</option>
+                  <option selected>----</option>
                   <option value="admin">Administrador</option>
                   <option value="worker">Treballador</option>
                 </select>

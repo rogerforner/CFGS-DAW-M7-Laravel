@@ -50,11 +50,20 @@ class UserController extends Controller
         ]);
 
         // Crear usuari amb les dades entrades.
-        User::create([
+        $user = User::create([
           'name'     => $data['name'],
           'email'    => $data['email'],
           'password' => bcrypt($data['password'])
         ]);
+
+        // Determinar si serà creat un administrador, un treballador o un client.
+        if ($request->role === 'admin') {
+            $user->assignRole('admin');
+        } elseif ($request->role === 'worker') {
+            $user->assignRole('worker');
+        } else {
+            $user->assignRole('client');
+        }
 
         return redirect()->route('users.index');
     }
