@@ -40,10 +40,14 @@ Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback
  *
  * $ php artisan route:list
  */
-Route::resource('users', 'UserController');
-Route::get('/users/pdf/{view_type}', 'UserController@pdf');
+Route::middleware(['role:admin'])->group(function () {
+    Route::resource('users', 'UserController');
+    Route::get('/users/pdf/{view_type}', 'UserController@pdf');
+});
 
-Route::resource('products', 'ProductController');
+Route::middleware(['role:admin|worker'])->group(function () {
+    Route::resource('products', 'ProductController');
+});
 
 Route::resource(
     'products-feed',

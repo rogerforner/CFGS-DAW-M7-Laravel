@@ -27,28 +27,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                      <!-- Usuaris -->
+                    @if(auth()->user()->role('admin') || auth()->user()->role('worker'))
+                      <ul class="navbar-nav mr-auto">
+                        @role('admin')
+                          <!-- Usuaris -->
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Usuaris
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="{{ action('UserController@index') }}">llistar</a>
+                              <a class="dropdown-item" href="{{ action('UserController@create') }}">Crear</a>
+                            </div>
+                          </li>
+                        @endrole
+
+                        <!-- Productes -->
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Usuaris
+                            Productes
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ action('UserController@index') }}">llistar</a>
-                            <a class="dropdown-item" href="{{ action('UserController@create') }}">Crear</a>
+                            <a class="dropdown-item" href="{{ action('ProductController@index') }}">llistar</a>
+                            <a class="dropdown-item" href="{{ action('ProductController@create') }}">Crear</a>
                           </div>
                         </li>
-                      <!-- Productes -->
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Productes
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{ action('ProductController@index') }}">llistar</a>
-                          <a class="dropdown-item" href="{{ action('ProductController@create') }}">Crear</a>
-                        </div>
-                      </li>
-                    </ul>
+                      </ul>
+                    @endif
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- JSON Feed RSS -->
@@ -62,21 +68,21 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-
-                                    @php
-                                      $user = Auth::user()->id;
-                                    @endphp
-                                    <a class="dropdown-item" href="{{ route('users.show', $user) }}">Perfil</a>
+                                  @php
+                                    $user = Auth::user()->id;
+                                  @endphp
+                                  <a class="dropdown-item" href="{{ route('users.show', $user) }}">Veure perfil</a>
+                                  <a class="dropdown-item" href="{{ route('users.edit', $user) }}">Editar perfil</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                      Logout
+                                  </a>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                  </form>
                                 </div>
                             </li>
                         @endguest
