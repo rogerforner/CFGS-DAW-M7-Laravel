@@ -33,7 +33,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <form action="{{ action('UserController@show', ['id' => $user->id]) }}" method="POST">
+            <form action="{{ action('UserProfileController@show', ['id' => $user->id]) }}" method="POST">
               @method('put')
               @csrf
 
@@ -52,25 +52,21 @@
                 <input type="password" name="password" class="form-control" id="userPassword" placeholder="***">
               </div>
 
-              <div class="form-group">
-                <label for="userRole">Rol</label>
-                <select class="form-control" id="userRole">
-                  <option selected>----</option>
-                  <option value="admin">Administrador</option>
-                  <option value="worker">Treballador</option>
-                </select>
-              </div>
+              @role('admin')
+                <div class="form-group">
+                  <label for="userRole">Rol</label>
+                  <select class="form-control" id="userRole">
+                    <option selected>----</option>
+                    <option value="admin">Administrador</option>
+                    <option value="worker">Treballador</option>
+                  </select>
+                </div>
+              @endrole
 
               <button type="submit" class="btn btn-primary">Editar</button>
             </form>
           </div>
         </div><!-- /.card -->
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-
-    <div class="row mt-5">
-      <div class="col">
-        <a href="{{ action('UserController@index') }}"><i class="far fa-arrow-alt-circle-left"></i> Tornar</a>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container -->

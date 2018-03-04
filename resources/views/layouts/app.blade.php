@@ -72,8 +72,8 @@
                                   @php
                                     $user = Auth::user()->id;
                                   @endphp
-                                  <a class="dropdown-item" href="{{ route('users.show', $user) }}">Veure perfil</a>
-                                  <a class="dropdown-item" href="{{ route('users.edit', $user) }}">Editar perfil</a>
+                                  <a class="dropdown-item" href="{{ route('user.show', $user) }}">Veure perfil</a>
+                                  <a class="dropdown-item" href="{{ route('user.edit', $user) }}">Editar perfil</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
