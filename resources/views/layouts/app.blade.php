@@ -27,7 +27,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @if(auth()->user()->role('admin') || auth()->user()->role('worker'))
+                    @php
+                      $userRoles = array('admin', 'worker');
+                    @endphp
+                    @hasanyrole('admin|worker')
                       <ul class="navbar-nav mr-auto">
                         @role('admin')
                           <!-- Usuaris -->
@@ -53,7 +56,7 @@
                           </div>
                         </li>
                       </ul>
-                    @endif
+                    @endhasanyrole
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
