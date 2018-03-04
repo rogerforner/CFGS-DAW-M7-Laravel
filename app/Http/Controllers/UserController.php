@@ -99,7 +99,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user)
+    public function update(Request $request, User $user)
     {
         // Validar formulari.
         $data = request()->validate([
@@ -123,6 +123,15 @@ class UserController extends Controller
 
         // Actualitzar dades.
         $user->update($data);
+
+        // Determinar si serà creat un administrador, un treballador o un client.
+        if ($request->role === 'admin') {
+            $user->syncRoles('admin');
+        } elseif ($request->role === 'worker') {
+            $user->syncRoles('worker');
+        } elseif ($request->role === 'client') {
+            $user->syncRoles('client');
+        }
 
         return redirect()->route('users.show', ['user' => $user]);
     }
