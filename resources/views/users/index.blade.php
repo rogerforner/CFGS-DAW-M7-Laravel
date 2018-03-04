@@ -14,14 +14,31 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
+            <!-- PDF
+            -------------------->
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/name-asc') }}"
+              role="button"><i class="far fa-file-pdf"></i> Nom (Asc.)</a>
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/name-desc') }}"
+              role="button"><i class="far fa-file-pdf"></i> Nom (Desc.)</a>
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/id-asc') }}"
+              role="button"><i class="far fa-file-pdf"></i> ID (Asc.)</a>
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/id-desc') }}"
+              role="button"><i class="far fa-file-pdf"></i> ID (Desc.)</a>
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/updated-g-asc') }}"
+              role="button"><i class="far fa-file-pdf"></i> Data Act. (Grup|Asc.)</a>
+            <a class="btn btn-outline-danger" href="{{ url('users/pdf/updated-g-desc') }}"
+              role="button"><i class="far fa-file-pdf"></i> Data Act. (Grup|Desc.)</a>
+
             <!-- TAULA USUARIS
             -------------------->
-            <table class="table table-hover">
+            <table class="table table-hover mt-4">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Correu electrònic</th>
+                <th scope="col">Creat</th>
+                <th scope="col">Modificat</th>
                 <th scope="col">Accions</th>
               </tr>
             </thead>
@@ -31,6 +48,8 @@
                   <td class="align-middle">{{ $user->id }}</td>
                   <td class="align-middle">{{ $user->name }}</td>
                   <td class="align-middle">{{ $user->email }}</td>
+                  <td class="align-middle">{{ $user->created_at }}</td>
+                  <td class="align-middle">{{ $user->updated_at }}</td>
                   <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Accions">
                       {{-- Veure --}}

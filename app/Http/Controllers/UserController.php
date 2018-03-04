@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class UserController extends Controller
 {
@@ -127,5 +129,77 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+
+    /**
+     * Obtenir un PDF amb el llistat d'usuaris.
+     */
+    public function pdf(Request $request)
+    {
+        // Dur a terme la consulta segons el paràmetre passat per la URL.
+        if ($request->view_type === 'name-asc') {
+            // Informació.
+            $info     = 'Ordenats alfabèticament per "Nom" de forma ascendent.';
+            $fileName = 'usuaris-usuaris-nomAsc';
+
+            // Consulta.
+            $users = User::orderBy('name', 'asc')
+                ->get();
+        } elseif ($request->view_type === 'name-desc') {
+            // Informació.
+            $info     = 'Ordenats alfabèticament per "Nom" de forma descendent.';
+            $fileName = 'usuaris-nomDesc';
+
+            // Consulta.
+            $users = User::orderBy('name', 'desc')
+                ->get();
+        } elseif ($request->view_type === 'id-asc') {
+            // Informació.
+            $info     = 'Ordenats per "ID" de forma ascendent.';
+            $fileName = 'usuaris-idAsc';
+
+            // Consulta.
+            $users = User::orderBy('id', 'asc')
+                ->get();
+        } elseif ($request->view_type === 'id-desc') {
+            // Informació.
+            $info     = 'Ordenats per "ID" de forma descendent.';
+            $fileName = 'usuaris-idDesc';
+
+            // Consulta.
+            $users = User::orderBy('id', 'desc')
+                ->get();
+        } elseif ($request->view_type === 'updated-g-asc') {
+            // Informació.
+            $info     = 'Agrupats per "Data actualització" i ordenats de forma ascendent.';
+            $fileName = 'usuaris-gUpAsc';
+
+            // Consulta.
+            $users = User::orderBy('updated_at', 'asc')
+                ->groupBy('updated_at')
+                ->get();
+        } else {
+            // Informació.
+            $info     = 'Agrupats per "Data actualització" i ordenats de forma descendent.';
+            $fileName = 'usuaris-gUpDesc';
+
+            // Consulta.
+            // Una altra manera de fer la consulta (hem importat "use" DB).
+            $users = DB::table('users')
+                ->groupBy('updated_at')
+                ->orderBy('updated_at', 'desc')
+                ->get();
+        }
+
+        // Carregar la vista per obtenir el format del PDF amb les seves dades.
+        $pdf = PDF::loadView('users.pdf', [
+            'users' => $users,
+            'info'  => $info,
+        ]);
+
+        // Posar un nom al fitxer.
+        $file = "$fileName.pdf";
+
+        return $pdf->download($file);
     }
 }

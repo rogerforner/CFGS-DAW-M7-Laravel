@@ -41,6 +41,7 @@ Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback
  * $ php artisan route:list
  */
 Route::resource('users', 'UserController');
+Route::get('/users/pdf/{view_type}', 'UserController@pdf');
 
 Route::resource('products', 'ProductController');
 
